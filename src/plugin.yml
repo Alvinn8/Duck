@@ -1,0 +1,9 @@
+name: Duck
+version: 1.0
+author: Alvin
+main: me.alvin.duck.DuckPlugin
+api-version: 1.13
+commands:
+    duck:
+        description: Duck!
+        usage: /duck
