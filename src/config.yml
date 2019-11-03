@@ -1,0 +1,8 @@
+# List of world names. If empty all worlds are enabled, unless it's listed
+# in the disabled_worlds.
+enabled_worlds: []
+
+# List of world names. Overrides enabled_worlds. If enabled_worlds is not
+# provided this can be used to disable the plugin in sertain worlds, while
+# having the plugin enabled in all other worlds
+disabled_worlds: []

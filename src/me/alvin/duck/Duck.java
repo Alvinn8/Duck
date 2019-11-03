@@ -2,7 +2,6 @@ package me.alvin.duck;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
@@ -10,7 +9,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -30,7 +28,7 @@ public class Duck {
         this.entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000000, 1, false, false));
         this.entity.setSilent(true);
 
-        this.armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+        this.armorStand = (ArmorStand) location.getWorld().spawnEntity(location.subtract(0, 1.5, 0), EntityType.ARMOR_STAND);
         this.armorStand.setVisible(false);
 
         String duckHead = DuckPlugin.getInstance().duckHeads[(int) Math.floor(Math.random() * DuckPlugin.getInstance().duckHeads.length)];
@@ -57,22 +55,6 @@ public class Duck {
         head.setItemMeta(headMeta);
 
         this.armorStand.setHelmet(head);
-
-        /*
-
-        // Custom player heads is not supported by Bukkit. To avoid having to use NMS code
-        // I am running commands from the console instead. For version compatibility two
-        // commands are ran. One of them will always fail, and one should always work.
-
-        // 1.13+
-        String command = "replaceitem entity @s armor.head player_head"+ duckHead;
-        DuckPlugin.getInstance().getLogger().info("Command: "+ Bukkit.dispatchCommand(this.armorStand, command));
-
-        // 1.8-1.12
-        String command2 = "replaceitem entity @e[c=1,r=0] armor.head skull 1 3 "+ duckHead;
-        DuckPlugin.getInstance().getLogger().info("Command2: "+ Bukkit.dispatchCommand(this.armorStand, command2));
-
-        */
     }
 
     public LivingEntity getEntity() {

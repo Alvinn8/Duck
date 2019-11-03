@@ -13,6 +13,11 @@ public class CommandDuck implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
+            if (!DuckPlugin.getInstance().isEnabledIn(player.getWorld())) {
+                player.sendMessage(DuckPlugin.getInstance().getMessage("notEnabledInWorld"));
+                return true;
+            }
+
             if (!player.hasPermission("duck.command")) {
                 player.sendMessage(DuckPlugin.getInstance().getMessage("command.noPermission"));
                 return true;
@@ -25,7 +30,7 @@ public class CommandDuck implements CommandExecutor {
                         return true;
                     }
 
-                    // DuckPlugin.getInstance().reloadConfig();
+                    DuckPlugin.getInstance().reloadConfig();
                     DuckPlugin.getInstance().reloadMessages();
 
                     player.sendMessage(DuckPlugin.getInstance().getMessage("command.reload"));
