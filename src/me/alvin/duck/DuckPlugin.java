@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +70,13 @@ public final class DuckPlugin extends JavaPlugin {
         addDefaultMessage(messagesConfig, "command.duck.spawn.unknown", "§cUnknown duck type! Choose between neutral, scared and hostile");
         addDefaultMessage(messagesConfig, "command.noPermission", "§cYou do not have permission to use this command!");
         addDefaultMessage(messagesConfig, "notEnabledInWorld", "§cDuck is not enabled in this world!");
+
+        try {
+            messagesConfig.save(messages);
+        } catch (IOException e) {
+            getLogger().severe("Failed to save messages.yml");
+            e.printStackTrace();
+        }
 
         reloadMessages();
 
