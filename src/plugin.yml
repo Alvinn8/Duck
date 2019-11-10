@@ -1,5 +1,5 @@
 name: Duck
-version: 1.0
+version: 1.1
 author: Alvin
 main: me.alvin.duck.DuckPlugin
 api-version: 1.13
